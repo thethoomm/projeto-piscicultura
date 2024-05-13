@@ -15,8 +15,9 @@ export function TabNavigator() {
         headerShown: false,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarStyle: {
-          borderWidth: 0,
+          borderTopWidth: 0,
           elevation: 0,
+          backgroundColor: theme.colors.background
         },
         tabBarLabelStyle: {
           fontSize: 14,
