@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     color: theme.colors.background
   },
   description: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '400',
     color: theme.colors.background
   }
