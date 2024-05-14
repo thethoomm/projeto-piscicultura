@@ -2,6 +2,7 @@ import { ScrollView, Text, View, Switch } from "react-native";
 import { RenderSwitchList } from "../render-switch-list";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/button";
+import { ThingspeakService } from "@/services/thingspeak";
 
 export function AutomaticForm() {
   const {
@@ -10,8 +11,11 @@ export function AutomaticForm() {
     formState: { errors },
   } = useForm({});
 
+  const thinspeakService = new ThingspeakService()
+
   const handleSendToThingspeak = (data: any) => {
     console.log(data);
+    thinspeakService.toggleSensorState()
   };
 
   return (
