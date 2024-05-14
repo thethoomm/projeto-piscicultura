@@ -30,5 +30,21 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 12,
+  },
+  alert: {
+    width: 'auto',
+    marginHorizontal: 12,
+    marginTop: 8,
+    backgroundColor: '#a3e635',
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    alignItems: 'flex-start',
+    justifyContent: 'center'
+  },
+  alertText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: theme.colors.text
   }
 })
