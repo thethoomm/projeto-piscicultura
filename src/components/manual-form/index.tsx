@@ -4,25 +4,37 @@ import { Button } from "@/components/button";
 
 import { useForm } from "react-hook-form";
 import { RenderInputList } from "../render-input-list";
+import { ThingspeakService } from "@/services/thingspeak";
+import { useAppNavigation } from "@/utils/use-app-navigation";
+import { useEffect, useState } from "react";
+import { useLoading } from "@/contexts/useLoading";
 
 export function ManualForm() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({});
+  const { control, handleSubmit } = useForm({});
+
+  const { isLoading, setLoading } = useLoading();
+
+  const navigation = useAppNavigation();
+
+  const thinspeakService = new ThingspeakService();
+
+  useEffect(() => {
+    console.log(isLoading);
+    if (isLoading) {
+      navigation.navigate("uploading");
+    }
+  }, [isLoading]);
 
   const handleSendToThingspeak = (data: any) => {
     console.log(data);
+    setLoading(true);
+    thinspeakService.updateSensorValues(data).then(() => setLoading(false));
   };
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <RenderInputList control={control}/>
-      <Button
-        text="Enviar"
-        onPress={handleSubmit(handleSendToThingspeak)}
-      />
+      <RenderInputList control={control} />
+      <Button text="Enviar" onPress={handleSubmit(handleSendToThingspeak)} />
     </ScrollView>
   );
 }
