@@ -17,7 +17,7 @@ export function ManualForm() {
   };
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <RenderInputList control={control}/>
       <Button
         text="Enviar"
