@@ -12,7 +12,7 @@ export function RenderInputList({ control }: RenderInputListProps) {
   
   return sensores.map((sensor) => (
     <View key={sensor.name} style={styles.formGroup}>
-      <Text style={styles.label}>{sensor.name.toUpperCase()}</Text>
+      <Text style={styles.label}>{sensor.name.toUpperCase()} ({sensor.measure})</Text>
       <View style={styles.inputGroup}>
         <Input
           control={control}
