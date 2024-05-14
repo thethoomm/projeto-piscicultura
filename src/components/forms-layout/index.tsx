@@ -1,6 +1,7 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
+import { useLoading } from "@/contexts/useLoading";
 
 type FormsLayoutProps = {
   title: string
@@ -9,6 +10,12 @@ type FormsLayoutProps = {
 }
 
 export function FormsLayout(props: FormsLayoutProps) {
+  const { message, setMessage } = useLoading()
+
+  function handleCloseAlert() {
+    setMessage('')
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -17,6 +24,11 @@ export function FormsLayout(props: FormsLayoutProps) {
           {props.description}
         </Text>
       </View>
+      {message && (
+        <TouchableOpacity style={styles.alert} onPress={handleCloseAlert}>
+          <Text style={styles.alertText}>{message}</Text>
+        </TouchableOpacity>
+      )}
       <View style={styles.content}>
         {props.children}
       </View>
