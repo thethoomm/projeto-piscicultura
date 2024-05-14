@@ -5,7 +5,7 @@ import { AutomaticForm } from "@/components/automatic-form";
 export default function AutomaticScreen() {
   const title = "Modo Automático";
   const description =
-    "No modo automático você pode alterar os valores máximos e mínimos de cada sensor.";
+    "No modo automático você pode desligar/ligar cada sensor.";
 
   return (
     <FormsLayout title={title} description={description}>
