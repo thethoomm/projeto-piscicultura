@@ -1,4 +1,4 @@
-export type Measurement  = {
+export type MeasurementLimits  = {
   condutividadeMax: string
   condutividadeMin: string
   orpMax: string
@@ -11,6 +11,16 @@ export type Measurement  = {
   salinidadeMin: string
   temperaturaMax: string
   temperaturaMin: string
+  [key: string]: string
+}
+
+export type Measurement  = {
+  condutividade: string
+  orp: string
+  oxigenio: string
+  ph: string
+  salinidade: string
+  temperatura: string
   [key: string]: string
 }
 
