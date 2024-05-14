@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { theme } from "@/theme";
 
 export const styles = StyleSheet.create({
   formGroup: {
@@ -13,6 +14,7 @@ export const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: theme.colors.text
   }
 })

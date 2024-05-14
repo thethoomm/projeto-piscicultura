@@ -10,5 +10,6 @@ export const styles = StyleSheet.create({
     borderColor: theme.colors.primary,
     borderRadius: 6,
     fontSize: 16,
+    color: theme.colors.text
   },
 })
