@@ -5799,6 +5799,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lottie-react-native@npm:6.7.0":
+  version: 6.7.0
+  resolution: "lottie-react-native@npm:6.7.0"
+  peerDependencies:
+    "@dotlottie/react-player": ^1.6.1
+    "@lottiefiles/react-lottie-player": ^3.5.3
+    react: "*"
+    react-native: ">=0.46"
+    react-native-windows: ">=0.63.x"
+  peerDependenciesMeta:
+    "@dotlottie/react-player":
+      optional: true
+    "@lottiefiles/react-lottie-player":
+      optional: true
+    react-native-windows:
+      optional: true
+  checksum: d0d7159f7c2eb2635c219606c8e528ca002401020333e1c83682479cb5b4b7ea72f7a18d12be8ed96584fa40fcfe4c4d0483d064e261aa6fe616b2adcf2f0a96
+  languageName: node
+  linkType: hard
+
 "lru-cache@npm:^10.0.1, lru-cache@npm:^10.2.0":
   version: 10.2.2
   resolution: "lru-cache@npm:10.2.2"
@@ -7071,6 +7091,7 @@ __metadata:
     "@types/react": ~18.2.45
     expo: ~51.0.5
     expo-status-bar: ~1.12.1
+    lottie-react-native: 6.7.0
     react: 18.2.0
     react-hook-form: ^7.51.4
     react-native: 0.74.1
