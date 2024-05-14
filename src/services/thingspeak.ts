@@ -6,12 +6,12 @@ import {
 } from "@/constants/thingspeak";
 import { Mode } from "@/enums/mode";
 import axios from "axios";
-import { Measurement } from "@/utils/sensores";
+import { Measurement, MeasurementLimits } from "@/utils/sensores";
 import { useAppNavigation } from "../utils/use-app-navigation";
 
 export class ThingspeakService {
   private url = THINGSPEAK_URL;
-  private delayTime = 15000;
+  private delayTime = 20000;
 
   private delay(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -44,7 +44,7 @@ export class ThingspeakService {
     }
   }
 
-  async updateSensorValues(data: Measurement) {
+  async updateSensorValues(data: MeasurementLimits) {
     await this.setMode(Mode.MANUAL);
 
     for (const key in data) {
@@ -56,62 +56,77 @@ export class ThingspeakService {
       switch (key) {
         case "temperaturaMax":
           this.sendNewValue(CANAL_LIMITE_SENSORES_1, 1, value);
-          console.log(value);
           break;
         case "temperaturaMin":
           this.sendNewValue(CANAL_LIMITE_SENSORES_1, 2, value);
-          console.log(value);
           break;
         case "phMax":
           this.sendNewValue(CANAL_LIMITE_SENSORES_1, 3, value);
-          console.log(value);
           break;
         case "phMin":
           this.sendNewValue(CANAL_LIMITE_SENSORES_1, 4, value);
-          console.log(value);
           break;
         case "oxigenioMax":
           this.sendNewValue(CANAL_LIMITE_SENSORES_1, 5, value);
-          console.log(value);
           break;
         case "oxigenioMin":
           this.sendNewValue(CANAL_LIMITE_SENSORES_1, 6, value);
-          console.log(value);
           break;
         case "orpMax":
           this.sendNewValue(CANAL_LIMITE_SENSORES_1, 7, value);
-          console.log(value);
           break;
         case "orpMin":
           this.sendNewValue(CANAL_LIMITE_SENSORES_1, 8, value);
-          console.log(value);
           break;
 
         // Canal 2
         case "condutividadeMax":
           this.sendNewValue(CANAL_LIMITE_SENSORES_2, 1, value);
-          console.log(value);
           break;
         case "condutividadeMin":
           this.sendNewValue(CANAL_LIMITE_SENSORES_2, 2, value);
-          console.log(value);
           break;
         case "salinidadeMax":
-          this.sendNewValue(CANAL_LIMITE_SENSORES_2, 1, value);
-          console.log(value);
+          this.sendNewValue(CANAL_LIMITE_SENSORES_2, 3, value);
           break;
         case "salinidadeMin":
-          this.sendNewValue(CANAL_LIMITE_SENSORES_2, 2, value);
-          console.log(value);
+          this.sendNewValue(CANAL_LIMITE_SENSORES_2, 4, value);
           break;
       }
       await this.delay(this.delayTime);
     }
   }
 
-  toggleSensorState() {
-    this.setMode(Mode.AUTOMATIC);
-  }
+  async toggleSensorState(data: any) {
+    await this.setMode(Mode.AUTOMATIC);
 
-  syncronizing() {}
+    const dataTyped: Measurement = data;
+
+    for (const key in dataTyped) {
+      const value = dataTyped[key] ? 1 : 0;
+
+      switch (key) {
+        case "temperatura":
+          await this.delay(this.delayTime/3)
+          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 1, value);
+          break;
+        case "ph":
+          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 2, value);
+          break;
+        case "oxigenio":
+          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 3, value);
+          break;
+        case "orp":
+          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 4, value);
+          break;
+        case "condutividade":
+          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 5, value);
+          break;
+        case "salinidade":
+          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 6, value);
+          break;
+      }
+      await this.delay(this.delayTime);
+    }
+  }
 }
