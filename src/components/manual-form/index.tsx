@@ -1,6 +1,6 @@
 import { ScrollView, Text, View } from "react-native";
 import { styles } from "./styles";
-import { StyledButton } from "@/components/styled-button";
+import { Button } from "@/components/button";
 
 import { useForm } from "react-hook-form";
 import { RenderInputList } from "../render-input-list";
@@ -19,8 +19,8 @@ export function ManualForm() {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <RenderInputList control={control}/>
-      <StyledButton
-        title="Enviar"
+      <Button
+        text="Enviar"
         onPress={handleSubmit(handleSendToThingspeak)}
       />
     </ScrollView>
