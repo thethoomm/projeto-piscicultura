@@ -13,6 +13,7 @@ export function TabNavigator() {
       initialRouteName="automatic"
       screenOptions={{
         headerShown: false,
+        tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarStyle: {
           borderTopWidth: 0,
