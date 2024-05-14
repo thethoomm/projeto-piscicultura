@@ -12,6 +12,7 @@ export function Input({ control, name, ...rest }: InputProps) {
     <Controller
       control={control}
       name={name}
+      defaultValue={''}
       render={({ field }) => (
         <View>
           <TextInput
