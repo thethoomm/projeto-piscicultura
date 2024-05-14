@@ -26,7 +26,6 @@ export function ManualForm() {
   }, [isLoading]);
 
   const handleSendToThingspeak = (data: any) => {
-    console.log(data);
     setLoading(true);
     thinspeakService.updateSensorValues(data).then(() => setLoading(false));
   };
