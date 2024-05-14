@@ -17,7 +17,7 @@ export function FormsLayout(props: FormsLayoutProps) {
           {props.description}
         </Text>
       </View>
-      <View>
+      <View style={styles.content}>
         {props.children}
       </View>
     </View>

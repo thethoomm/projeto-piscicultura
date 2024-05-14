@@ -8,8 +8,9 @@ export const styles = StyleSheet.create({
   },
   header: {
     width: '100%',
-    height: 200,
-    padding: 20,
+    height: 180,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
     flexDirection: 'column',
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
@@ -24,5 +25,10 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     color: theme.colors.background
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 12,
   }
 })
