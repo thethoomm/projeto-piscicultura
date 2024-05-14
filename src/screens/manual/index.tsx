@@ -5,7 +5,7 @@ import { ManualForm } from '@/components/manual-form';
 export default function ManualScreen() {
   const title = "Modo Manual";
   const description =
-    "No modo automático você pode desligar/ligar cada sensor.";
+    "No modo manual você pode alterar os valores máximos e mínimos de cada sensor.";
 
   return (
     <FormsLayout title={title} description={description}>
