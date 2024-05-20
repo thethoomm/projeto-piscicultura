@@ -6,8 +6,9 @@ import {
 } from "@/constants/thingspeak";
 import { Mode } from "@/enums/mode";
 import axios from "axios";
-import { Measurement, MeasurementLimits } from "@/utils/sensores";
+import { Measurement, MeasurementLimits, SensorType } from "@/utils/sensores";
 import { useAppNavigation } from "../utils/use-app-navigation";
+import { ToggleSensorState } from "../enums/toggle-sensor-state";
 
 export class ThingspeakService {
   private url = THINGSPEAK_URL;
@@ -22,14 +23,16 @@ export class ThingspeakService {
     console.log("entrou no sendNewValue(): ", request);
 
     try {
-      const response = axios.get(request);
+      const response = await axios.get(request);
+      console.log("Response -> ");
+      console.log({ response });
       return (await response).status;
     } catch (error) {
       console.error(`Error sending new value:`, error);
     }
   }
 
-  private async setMode(mode: Mode) {
+  async setMode(mode: Mode) {
     const value = mode === Mode.AUTOMATIC ? Mode.AUTOMATIC : Mode.MANUAL;
     const request = `${this.url}update?api_key=${CANAL_MANUAL_AUTOMATICO}&field7=${value}`;
 
@@ -97,36 +100,20 @@ export class ThingspeakService {
     }
   }
 
-  async toggleSensorState(data: any) {
-    await this.setMode(Mode.AUTOMATIC);
-
-    const dataTyped: Measurement = data;
-
-    for (const key in dataTyped) {
-      const value = dataTyped[key] ? 1 : 0;
-
-      switch (key) {
-        case "temperatura":
-          await this.delay(this.delayTime/3)
-          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 1, value);
-          break;
-        case "ph":
-          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 2, value);
-          break;
-        case "oxigenio":
-          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 3, value);
-          break;
-        case "orp":
-          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 4, value);
-          break;
-        case "condutividade":
-          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 5, value);
-          break;
-        case "salinidade":
-          this.sendNewValue(CANAL_MANUAL_AUTOMATICO, 6, value);
-          break;
-      }
-      await this.delay(this.delayTime);
+  async toggleSensorState(sensor: SensorType, sensorState: ToggleSensorState) {
+    // await this.setMode(Mode.AUTOMATIC);
+    
+    const url = `${THINGSPEAK_URL}update?api_key=${CANAL_MANUAL_AUTOMATICO}&field${sensor.field}=${sensorState}`
+    
+    console.log(url)
+    
+    try {
+      await axios.get(url)
+    } catch (error) {
+      console.warn(error)
     }
+    
+    await this.delay(this.delayTime);
+    console.log('Foi')
   }
 }

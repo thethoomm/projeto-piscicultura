@@ -1,11 +1,13 @@
-import { useEffect } from "react";
-import { ScrollView } from "react-native";
-import { RenderSwitchList } from "../render-switch-list";
-import { useForm } from "react-hook-form";
+import { ScrollView, Text, View } from "react-native";
+import { styles } from "./styles";
 import { Button } from "@/components/button";
+
+import { useForm } from "react-hook-form";
+import { RenderInputList } from "../render-input-list";
 import { ThingspeakService } from "@/services/thingspeak";
-import { useLoading } from "@/contexts/useLoading";
 import { useAppNavigation } from "@/utils/use-app-navigation";
+import { useEffect } from "react";
+import { useLoading } from "@/contexts/useLoading";
 
 export function AutomaticForm() {
   const { control, handleSubmit } = useForm({});
@@ -25,12 +27,12 @@ export function AutomaticForm() {
 
   const handleSendToThingspeak = (data: any) => {
     setLoading(true);
-    thinspeakService.toggleSensorState(data).then(() => setLoading(false));
+    thinspeakService.updateSensorValues(data).then(() => setLoading(false));
   };
 
   return (
-    <ScrollView>
-      <RenderSwitchList control={control} />
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <RenderInputList control={control} />
       <Button text="Enviar" onPress={handleSubmit(handleSendToThingspeak)} />
     </ScrollView>
   );

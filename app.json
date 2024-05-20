@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "projeto-piscicultura",
+    "name": "Piscicultura App",
     "slug": "projeto-piscicultura",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,6 +15,7 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -23,6 +24,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "16031b7b-1c7c-4a58-a6d2-edfbd4025b9f"
+      }
     }
   }
 }

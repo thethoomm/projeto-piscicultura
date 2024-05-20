@@ -5,7 +5,8 @@ export const styles = StyleSheet.create({
   formGroup: {
     flex: 1,
     marginBottom: 16,
-    flexDirection: 'row',
+    gap: 8,
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -13,5 +14,10 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     color: theme.colors.text
+  },
+  buttonBox: {
+    flexDirection: 'row',
+    width: '100%',
+    gap: 4,
   }
 })
